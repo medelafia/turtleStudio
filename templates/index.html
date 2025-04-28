@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{get_locale()}}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,34 +17,22 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom rounded">
         <div class="container">
           <a class="navbar-brand h1 text-capitalize" href="#">TurtleCode</a>
-          <!--<div class="w-50 d-flex align-items-center btn btn-outline-primary">
-            <button type="button" class="btn">
-                level : <span class="badge bg-primary">{{student.level}}</span>
-            </button>
-            <div class="progress w-75 ms-5">
-                <div style="width: {{student.score}}%;" class="progress-bar" role="progressbar"  aria-valuenow="{{ student.score * 2 }}" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-
-          </div>-->
           <div class="ms-5 d-flex align-items-center  justify-content-end">
+           
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-user text-primary"></i>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-light p-4 dropdown-menu-end" style="width: 200px;">
+                <ul class="dropdown-menu dropdown-menu-light p-4 dropdown-menu-end" style="width: 300px;">
+                  <li class="d-flex align-items-center justify-content-center flex-column mb-3">
+                    <img src="{{ url_for('static', filename='images/level_' ~ student.level ~ '.png') }}" alt="" width="180px" height="200px">
+                    <div class="progress mt-1 w-75" style="height: 6px;">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: {{student.score}}%;" aria-valuenow="{{student.score}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
                   <li class="text-primary text-capitalize">{{student.firstName}} {{student.lastName}}</li>
-                  <li><hr class="dropdown-divider"></li>
                   <li class="my-2">Age : {{student.age}} years old</li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="mt-3 mb-1">
-                        level : <div class="badge bg-primary px-2">{{student.level}}</div>
-                  </li>
-                  <li class="mb-3 mt-1">
-                    score : 
-                    <span class="progress">
-                        <span style="width: {{student.score}}%;" class="progress-bar" role="progressbar"  aria-valuenow="{{ student.score * 2 }}" aria-valuemin="0" aria-valuemax="100"></span>
-                    </span>
-                  </li>
                   <li><hr class="dropdown-divider"></li>
                   <li>
                     <form action="{{url_for('logout')}}" method="post">
@@ -53,14 +41,32 @@
                   </li>
                 </ul>
             </div>
-        
+            <div class="dropdown ms-2">
+              <button class="btn btn-outline-secondary dropdown-toggle " type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-earth-americas"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                <li>
+                  <div class="container d-flex align-items-center justify-content-start">
+                    <img src="https://flagsapi.com/FR/flat/32.png">
+                    <a class="dropdown-item" href="?lang=fr">{{_('french')}}</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="container d-flex align-items-center justify-content-start">
+                    <img src="https://flagsapi.com/US/flat/32.png">
+                    <a class="dropdown-item" href="?lang=en">{{_('english')}}</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
             
           </div>
             
         </div>
       </nav>
     <div class="container py-3">
-        <h1 class="text-capitalize mb-5">welcome back <span class="text-primary">{{student.firstName}} {{student.lastName}}</span> ! </h1>    
+        <h1 class="text-capitalize mb-5">{{_('welcome back')}} <span class="text-primary">{{student.firstName}} {{student.lastName}}</span> ! </h1>    
         <div class="row">
             <div class="col-sm-6 d-flex flex-column">
                 <!-- Canvas Container -->
@@ -89,9 +95,9 @@
                     {{task}}
                 </div>
                 <div class="d-flex align-items-center justufy-content-between my-3 w-100">
-                    <button class="btn btn-success w-50 me-2" id="verify">verify</button>
+                    <button class="btn btn-success w-50 me-2" id="verify">{{_('verify')}}</button>
                     <button disabled id="generate_task_btn" class="btn btn-primary  w-50 ms-2">
-                        next task
+                      {{_('next task')}}
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
@@ -105,7 +111,7 @@
                       </h2>
                       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                          <strong>Interactive online Logo interpreter with lessons.</strong> <a href="https://turtleacademy.com" target="_blank">link</a>
+                          <strong>{{_('Interactive online Logo interpreter with lessons.')}}</strong> <a href="https://turtleacademy.com" target="_blank">link</a>
                         </div>
                       </div>
                     </div>
@@ -117,7 +123,7 @@
                       </h2>
                       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                          <strong>A great resource for history, projects, and tutorials.</strong> <a href=" http://el.media.mit.edu/logo-foundation" target="_blank">link</a>
+                          <strong>{{_('A great resource for history, projects, and tutorials.')}}</strong> <a href=" http://el.media.mit.edu/logo-foundation" target="_blank">link</a>
                         </div>
                       </div>
                     </div>
@@ -129,7 +135,7 @@
                       </h2>
                       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                          <strong>Free implementation of Logo with documentation.</strong><a href="https://people.eecs.berkeley.edu/~bh/logo.html" target="_blank">link</a>
+                          <strong>{{_('Free implementation of Logo with documentation.')}}</strong><a href="https://people.eecs.berkeley.edu/~bh/logo.html" target="_blank">link</a>
                         </div>
                       </div>
                     </div>
@@ -141,7 +147,7 @@
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                           <div class="accordion-body">
-                            <strong>A modern Windows-based version of Logo.</strong> <a href="http://fmslogo.sourceforge.net" target="_blank">link</a>
+                            <strong>{{_('A modern Windows-based version of Logo.')}}</strong> <a href="http://fmslogo.sourceforge.net" target="_blank">link</a>
                           </div>
                         </div>
                       </div>
@@ -218,17 +224,6 @@
             alert_close_btn.setAttribute("type" , "button") 
             alert_close_btn.setAttribute("data-bs-dismiss" , "alert") 
             alert.appendChild(alert_close_btn) 
-            if(references.length != 0)  {
-                const alert_references = document.createElement("ul") 
-                references.foreach(reference => {
-                    const reference_element = document.createElement("li") 
-                    const reference_element_text_node = document.createTextNode(reference) 
-                    reference_element.appendChild(reference_element_text_node) 
-                    alert_references.appendChild(reference_element)
-                })
-                alert.appendChild(alert_references)
-            }
-
             return alert 
         }
         generate_task_btn.onclick= (event)=>{
@@ -270,7 +265,7 @@
                     type = "warning" 
                 }
                 const task_col = document.getElementById("task-col" ) 
-                const alert = createAlert(type , data.feedback , data.references ) 
+                const alert = createAlert(type , data.feedback , [] ) 
                 task_col.prepend(alert)  
             })
         }

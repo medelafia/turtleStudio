@@ -1,0 +1,98 @@
+# French translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-03-30 11:04+0000\n"
+"PO-Revision-Date: 2025-03-30 11:05+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+#: templates/index.html:32
+msgid "language"
+msgstr "langue"
+
+#: templates/index.html:35
+msgid "french"
+msgstr "français"
+
+#: templates/index.html:36
+msgid "english"
+msgstr "anglais"
+
+#: templates/index.html:72
+msgid "welcome back"
+msgstr "bon retour"
+
+#: templates/index.html:101
+msgid "verify"
+msgstr "vérifier"
+
+#: templates/index.html:103
+msgid "next task"
+msgstr "tâche suivante"
+
+#: templates/index.html:117
+msgid "Interactive online Logo interpreter with lessons."
+msgstr "Interpréteur Logo en ligne interactif avec des leçons."
+
+#: templates/index.html:129
+msgid "A great resource for history, projects, and tutorials."
+msgstr "Une excellente ressource pour l'histoire, les projets et les tutoriels."
+
+#: templates/index.html:141
+msgid "Free implementation of Logo with documentation."
+msgstr "Implémentation gratuite de Logo avec documentation."
+
+#: templates/index.html:153
+msgid "A modern Windows-based version of Logo."
+msgstr "Une version moderne de Logo basée sur Windows."
+
+#: templates/login.html:14
+msgid "login"
+msgstr "connexion"
+
+#: templates/login.html:21 templates/register.html:40
+msgid "password"
+msgstr "mot de passe"
+
+#: templates/login.html:25
+msgid "haven't account ?"
+msgstr "vous n'avez pas de compte ?"
+
+#: templates/login.html:25
+msgid "sign up"
+msgstr "s'inscrire"
+
+#: templates/login.html:26 templates/register.html:49
+msgid "register"
+msgstr "s'inscrire"
+
+#: templates/register.html:20
+msgid "registration form"
+msgstr "formulaire d'inscription"
+
+#: templates/register.html:23
+msgid "first name"
+msgstr "prénom"
+
+#: templates/register.html:27
+msgid "last name"
+msgstr "nom de famille"
+
+#: templates/register.html:31
+msgid "email"
+msgstr "email"
+
+#: templates/register.html:44
+msgid "confirm password"
+msgstr "confirmer le mot de passe"

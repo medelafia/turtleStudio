@@ -3,18 +3,29 @@ from google import genai
 import re 
 from flask_sqlalchemy import SQLAlchemy 
 from werkzeug.security import generate_password_hash , check_password_hash 
+from flask_babel import Babel , _ 
+import os
+from dotenv import load_dotenv
+import pymysql
 
 
+pymysql.install_as_MySQLdb()
+load_dotenv()
+def get_locale() : 
+    return request.args.get("lang") or 'fr' 
 
 app = Flask(__name__) 
-client = genai.Client(api_key="AIzaSyBX25rXs4AbIzdY_k0Ehf0UP8C_P5m_WJc")
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY")) 
 
-
-app.secret_key = "sjnsknkbdslkbddsdvbvvkjvdsv" 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Med_29072003@localhost/pfe_app'
+app.secret_key = os.getenv("APP_SECRET_KEY")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI") 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app) 
 
+app.config['BABEL_DEFAULT_LOCALE'] = 'fr'  # Default language
+app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'  # Folder for translations
+
+babel = Babel(app , locale_selector=get_locale)
+db = SQLAlchemy(app) 
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,7 +40,12 @@ class Student(db.Model):
         return f'<User {self.firstName}>'
 
 
-# Route to create the database (run this once to create tables)
+
+
+@app.context_processor
+def inject_locale():
+    return {'get_locale': get_locale}
+
 @app.before_request
 def create_tables():
     db.create_all()
@@ -59,7 +75,8 @@ def generate_exercice() :
         Level 3, Score 30: Use a loop to draw a triangle.
         Level 3, Score 95: Create a nested loop shape with increasing angles.
         Level 6, Score 10: Draw a simple fractal with basic recursion.
-        Level 6, Score 90: Generate a recursive snowflake with intricate details.", 
+        Level 6, Score 90: Generate a recursive snowflake with intricate details.
+        for the language is {request.args.get('lang') or 'fr' }
     """)
     return response.text
 
@@ -112,7 +129,7 @@ def login() :
             if student and check_password_hash(student.password , password ) : 
                 session['is_logged'] = True
                 session['user_id'] = student.id 
-                return redirect(url_for("index" , student = student )) 
+                return redirect(url_for("index" , student = student , lang='fr')) 
             else : 
                 return redirect(url_for("login")) 
         else : 
@@ -150,7 +167,9 @@ def verify() :
 
                 Do not include any additional text.  
                 Here is the exercise: {task}.  
-                Here is the student's response: {student_code}."""
+                Here is the student's response: {student_code}.
+                for the feedback language is {request.args.get('lang') or 'fr' } . 
+                """
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt, 
@@ -159,7 +178,6 @@ def verify() :
     response_data = response.text 
     references = re.findall(r"https?:\/\/[\w.-]+", response_data )
     response_data = re.sub(r"https?:\/\/[\w.-]+" , "" , response_data)
-    print(references)
     passed = response_data.split("\n")[0].strip()
     feedback = "".join(response_data.split("\n")[1:])  
     if passed.capitalize() == "True":  
@@ -175,7 +193,7 @@ def verify() :
         db.session.commit( )
 
     
-    return jsonify({"passed" :passed  , "feedback" : feedback , "references" : references })
+    return jsonify({"passed" :passed  , "feedback" : feedback })
 
 
 

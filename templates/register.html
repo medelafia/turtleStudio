@@ -17,18 +17,18 @@
     {%endif%}
     <div class="container p-5 d-flex align-items-center justify-content-between">
         <div class="w-50" id="left-side">
-            <h1 class="text-success text-capitalize mb-3">registration form</h1> 
+            <h1 class="text-success text-capitalize mb-3">{{_('registration form')}}</h1> 
             <form id="form" action="" method="post">
                 <div class="form-group my-2">
-                    <label for="firstName" class="text-capitalize">first name</label>
+                    <label for="firstName" class="text-capitalize">{{_('first name')}}</label>
                     <input type="text" name="firstName" id="firstName" class="form-control"> 
                 </div>
                 <div class="form-group my-2">
-                    <label for="lastName" class="text-capitalize">last name</label>
+                    <label for="lastName" class="text-capitalize">{{_('last name')}}</label>
                     <input type="text" name="lastName" id="lastName" class="form-control">
                 </div>
                 <div class="form-group my-2">
-                    <label for="email" class="text-capitalize">email</label>
+                    <label for="email" class="text-capitalize">{{_('email')}}</label>
                     <input type="email" name="email" id="email" class="form-control">
                 </div>
                 <div class="form-group my-2">
@@ -37,16 +37,16 @@
                 </div>
                 <div class="d-flex align-items-center my-2">
                     <div class="form-group me-1 w-50">
-                        <label for="password" class="text-capitalize">password</label>
-                        <input type="text" name="password" id="password" class="form-control">
+                        <label for="password" class="text-capitalize">{{_('password')}}</label>
+                        <input type="password" name="password" id="password" class="form-control">
                     </div>
                     <div class="form-group ms-1 w-50">
-                        <label for="confirmPassword" class="text-capitalize">confirm password</label>
-                        <input type="text" name="password" id="confirmPassword" class="form-control">
+                        <label for="confirmPassword" class="text-capitalize">{{_('confirm password')}}</label>
+                        <input type="password" name="password" id="confirmPassword" class="form-control">
                     </div>
                 </div>
 
-                <button class="btn btn-success w-100 mt-5" id="register-btn">register</button>
+                <button class="btn btn-success w-100 mt-5" id="register-btn">{{_('register')}}</button>
             </form>
         </div>
         <div class="w-50 d-flex align-items-center justify-content-center" >
