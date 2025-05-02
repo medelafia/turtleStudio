@@ -19,10 +19,18 @@
         #content-container { 
             flex-direction: row;
         }
+        #image > img { 
+            width: 350px; 
+            height: 400px ; 
+        }
         @media (max-width : 600px ) {
             #image {
                 width: 100%;
                 order : 0 ; 
+            }
+            #image > img { 
+                width: 100px ; 
+                height: 150px ; 
             }
             #left-side { 
                 width: 100% ;
@@ -55,7 +63,7 @@
             </form>
         </div>
         <div id="image">
-            <img src="{{ url_for('static', filename='images/turtle.jpg') }}" class="p-4" alt="" width="350px" height="400px">
+            <img src="{{ url_for('static', filename='images/turtle.jpg') }}" class="p-4" alt="">
         </div>
     </div>
 </body>
