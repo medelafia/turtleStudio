@@ -16,6 +16,9 @@
         #left-side { 
             width: 50% ;
         }
+        #content-container { 
+            flex-direction: row;
+        }
         @media (max-width : 600px ) {
             #image {
                 width: 100%;
@@ -25,12 +28,15 @@
                 width: 100% ;
                 order : 1  ; 
             }
+            #content-container { 
+                flex-direction: row;
+            }
         }
    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <div class="container-md p-5 d-flex align-items-center justify-content-between flex-sm-column flex-lg-row" id="content-container">
+    <div class="container-md p-5 d-flex align-items-center justify-content-between" id="content-container">
         <div id="left-side">
             <h1 class="text-success text-capitalize mb-3">{{_('login')}}</h1> 
             <form id="form" action="" method="post">
