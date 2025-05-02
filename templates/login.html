@@ -18,17 +18,19 @@
         }
         @media (max-width : 600px ) {
             #image {
-                display: none ;
+                width: 100%;
+                order : 0 ; 
             }
             #left-side { 
                 width: 100% ;
+                order : 1  ; 
             }
         }
    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <div class="container-md p-5 d-flex align-items-center justify-content-between">
+    <div class="container-md p-5 d-flex align-items-center justify-content-between flex-sm-column flex-lg-row" id="content-container">
         <div id="left-side">
             <h1 class="text-success text-capitalize mb-3">{{_('login')}}</h1> 
             <form id="form" action="" method="post">
